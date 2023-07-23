@@ -1,12 +1,12 @@
 import { Controller, Get } from '@nestjs/common';
-import { GetClient } from 'src/core/use-cases/get-client';
+import { ListClients } from 'src/core/use-cases/list-clients';
 
 @Controller('client')
 export class ClientController {
-  constructor(private readonly getClient: GetClient) {}
+  constructor(private readonly listClients: ListClients) {}
 
   @Get()
   async getAllClients() {
-    return await this.getClient.executeAll();
+    return await this.listClients.execute();
   }
 }

@@ -3,14 +3,14 @@ import { ClientDTO } from '../dtos/client-dto';
 import { ClientRepository } from '../repositories/client-repository';
 
 @Injectable()
-export class GetClient {
+export class ListClients {
   private clientRepository: ClientRepository;
 
   constructor(clientRepository: ClientRepository) {
     this.clientRepository = clientRepository;
   }
 
-  async executeAll(): Promise<ClientDTO[]> {
+  async execute(): Promise<ClientDTO[]> {
     return Promise.resolve(await this.clientRepository.findAll());
   }
 }

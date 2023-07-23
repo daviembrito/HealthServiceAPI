@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { PrismaService } from './infra/services/prisma-service';
 import { ClientController } from './infra/controllers/client-controller';
 import { PrismaClientRepository } from './infra/repositories/prisma-client-repository';
-import { GetClient } from './core/use-cases/get-client';
+import { ListClients } from './core/use-cases/list-clients';
 import { ClientRepository } from './core/repositories/client-repository';
 
 @Module({
@@ -14,7 +14,7 @@ import { ClientRepository } from './core/repositories/client-repository';
       provide: ClientRepository,
       useClass: PrismaClientRepository,
     },
-    GetClient,
+    ListClients,
   ],
 })
 export class AppModule {}
