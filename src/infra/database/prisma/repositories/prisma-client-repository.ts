@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { ClientRepository } from 'src/core/repositories/client-repository';
 import { PrismaService } from '../services/prisma-service';
-import { ClientDTO } from 'src/core/dtos/client-dto';
+import { Client } from 'src/core/entities/client';
+import { PrismaClientMapper } from '../mappers/prisma-client-mapper';
 
 @Injectable()
 export class PrismaClientRepository implements ClientRepository {
@@ -9,8 +10,8 @@ export class PrismaClientRepository implements ClientRepository {
     this.prismaService = prismaService;
   }
 
-  async findAll(): Promise<ClientDTO[]> {
+  async findAll(): Promise<Client[]> {
     const clients = await this.prismaService.client.findMany();
-    return clients;
+    return clients.map(PrismaClientMapper.toDomain);
   }
 }

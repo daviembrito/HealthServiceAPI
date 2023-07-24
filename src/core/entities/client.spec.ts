@@ -3,18 +3,18 @@ import { Client } from './client';
 describe('Test for Client entity', () => {
   let client;
   beforeAll(() => {
-    client = new Client(
-      'a8Ahy1j',
-      'Davi',
-      new Date('2023-1-5'),
-      'M',
-      [
+    client = new Client({
+      id: 'a8Ahy1j',
+      name: 'Davi',
+      birthDate: new Date('2023-1-5'),
+      gender: 'M',
+      healthProblems: [
         { name: 'diabetes', degree: 2 },
         { name: 'asthma', degree: 5 },
       ],
-      new Date('2021-3-4'),
-      new Date('2021-3-4'),
-    );
+      createdAt: new Date('2021-3-4'),
+      updatedAt: new Date('2021-3-4'),
+    });
   });
 
   it('should be able to create a client', () => {

@@ -1,5 +1,5 @@
-import { ClientDTO } from '../dtos/client-dto';
+import { Client } from '../entities/client';
 
 export abstract class ClientRepository {
-  abstract findAll(): Promise<ClientDTO[]>;
+  abstract findAll(): Promise<Client[]>;
 }
