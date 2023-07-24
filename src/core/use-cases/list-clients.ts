@@ -4,11 +4,7 @@ import { Client } from '../entities/client';
 
 @Injectable()
 export class ListClients {
-  private clientRepository: ClientRepository;
-
-  constructor(clientRepository: ClientRepository) {
-    this.clientRepository = clientRepository;
-  }
+  constructor(private readonly clientRepository: ClientRepository) {}
 
   async execute(): Promise<Client[]> {
     return Promise.resolve(await this.clientRepository.findAll());
