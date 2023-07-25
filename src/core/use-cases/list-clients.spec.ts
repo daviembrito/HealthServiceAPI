@@ -26,7 +26,7 @@ describe('Test for ListClients use case', () => {
     await clientRepository.create(client2);
 
     const clients = await listClients.execute();
-    console.log(clients);
+
     expect(clients).toEqual(
       expect.arrayContaining([
         expect.objectContaining(client1),
