@@ -7,6 +7,6 @@ export class ListClients {
   constructor(private readonly clientRepository: ClientRepository) {}
 
   async execute(): Promise<Client[]> {
-    return Promise.resolve(await this.clientRepository.findAll());
+    return await this.clientRepository.findAll();
   }
 }
