@@ -4,6 +4,7 @@ import { ListClients } from 'src/core/use-cases/list-clients';
 import { ClientNotFoundExceptionFilter } from '../filters/client-not-found-filter';
 import { InvalidIdException } from './exceptions/invalid-id';
 import { InvalidIdExceptionFilter } from '../filters/invalid-id-filter';
+import ObjectID from 'bson-objectid';
 
 @Controller('client')
 export class ClientController {
@@ -23,12 +24,9 @@ export class ClientController {
     new InvalidIdExceptionFilter(),
   )
   async getClientById(@Param('id') id: string) {
-    let client;
-    try {
-      client = await this.getClient.execute(id);
-    } catch {
-      throw new InvalidIdException();
-    }
+    if (!ObjectID.isValid(id)) throw new InvalidIdException();
+
+    const client = await this.getClient.execute(id);
 
     return client;
   }
