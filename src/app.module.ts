@@ -5,6 +5,7 @@ import { PrismaClientRepository } from './infra/database/prisma/repositories/pri
 import { ListClients } from './core/use-cases/list-clients';
 import { ClientRepository } from './core/repositories/client-repository';
 import { GetClient } from './core/use-cases/get-client';
+import { CreateClient } from './core/use-cases/create-client';
 
 @Module({
   imports: [],
@@ -17,6 +18,7 @@ import { GetClient } from './core/use-cases/get-client';
     },
     ListClients,
     GetClient,
+    CreateClient,
   ],
 })
 export class AppModule {}

@@ -13,4 +13,15 @@ export class PrismaClientMapper {
       updatedAt: rawClient.updatedAt,
     });
   }
+
+  static toPrisma(client: Client) {
+    return {
+      name: client.getName(),
+      birthDate: client.getBirthDate(),
+      gender: client.getGender(),
+      healthProblems: client.getHealthProblems(),
+      createdAt: client.getCreatedAt(),
+      updatedAt: client.getUpdatedAt(),
+    };
+  }
 }

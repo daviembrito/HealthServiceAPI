@@ -1,9 +1,8 @@
+import { Replace } from 'src/helpers/replace';
 import { HealthProblem } from './health-problem';
 
-export type Replace<T, R> = Omit<T, keyof R> & R;
-
 export interface ClientProperties {
-  id: string;
+  id?: string;
   name: string;
   birthDate: Date;
   gender: string;
@@ -15,10 +14,16 @@ export interface ClientProperties {
 export class Client {
   private properties: ClientProperties;
 
-  constructor(properties: Replace<ClientProperties, { createdAt?: Date }>) {
+  constructor(
+    properties: Replace<
+      ClientProperties,
+      { createdAt?: Date; updatedAt?: Date }
+    >,
+  ) {
     this.properties = {
       ...properties,
       createdAt: properties.createdAt ?? new Date(),
+      updatedAt: properties.updatedAt ?? new Date(),
     };
   }
 
