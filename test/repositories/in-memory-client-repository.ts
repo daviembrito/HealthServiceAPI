@@ -1,7 +1,7 @@
 import { Client } from 'src/core/entities/client';
 import { ClientRepository } from 'src/core/repositories/client-repository';
 import ObjectID from 'bson-objectid';
-import { InvalidIdException } from '../../src/infra/http/controllers/exceptions/invalid-id';
+import { ClientNotFoundException } from '../../src/infra/exceptions/client-not-found';
 
 export class InMemoryClientRepository implements ClientRepository {
   public clients: Client[] = [];
@@ -11,11 +11,11 @@ export class InMemoryClientRepository implements ClientRepository {
   }
 
   async findById(clientId: string): Promise<Client> | null {
-    if (!ObjectID.isValid(clientId)) throw new InvalidIdException();
+    if (!ObjectID.isValid(clientId)) throw new ClientNotFoundException();
 
     const client = this.clients.find((item) => clientId === item.getId());
 
-    if (!client) return null;
+    if (!client) throw new ClientNotFoundException();
 
     return client;
   }

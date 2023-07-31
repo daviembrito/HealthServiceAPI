@@ -3,6 +3,7 @@ import { ClientRepository } from 'src/core/repositories/client-repository';
 import { PrismaService } from '../services/prisma-service';
 import { Client } from 'src/core/entities/client';
 import { PrismaClientMapper } from '../mappers/prisma-client-mapper';
+import { ClientNotFoundException } from 'src/infra/exceptions/client-not-found';
 
 @Injectable()
 export class PrismaClientRepository implements ClientRepository {
@@ -21,7 +22,7 @@ export class PrismaClientRepository implements ClientRepository {
     });
 
     if (!client) {
-      return null;
+      throw new ClientNotFoundException();
     }
 
     return PrismaClientMapper.toDomain(client);

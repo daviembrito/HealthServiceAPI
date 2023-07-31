@@ -1,6 +1,6 @@
 import { ExceptionFilter, Catch, ArgumentsHost } from '@nestjs/common';
 import { Response } from 'express';
-import { ClientNotFoundException } from 'src/core/use-cases/exceptions/client-not-found';
+import { ClientNotFoundException } from 'src/infra/exceptions/client-not-found';
 
 @Catch(ClientNotFoundException)
 export class ClientNotFoundExceptionFilter implements ExceptionFilter {

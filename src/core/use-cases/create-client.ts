@@ -25,6 +25,6 @@ export class CreateClient {
 
     const client = new Client({ name, birthDate, gender, healthProblems });
 
-    this.clientRepository.save(client);
+    await this.clientRepository.save(client);
   }
 }

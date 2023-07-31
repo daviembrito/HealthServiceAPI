@@ -6,6 +6,7 @@ import { ListClients } from './core/use-cases/list-clients';
 import { ClientRepository } from './core/repositories/client-repository';
 import { GetClient } from './core/use-cases/get-client';
 import { CreateClient } from './core/use-cases/create-client';
+import { UpdateClient } from './core/use-cases/update-client';
 
 @Module({
   imports: [],
@@ -19,6 +20,7 @@ import { CreateClient } from './core/use-cases/create-client';
     ListClients,
     GetClient,
     CreateClient,
+    UpdateClient,
   ],
 })
 export class AppModule {}

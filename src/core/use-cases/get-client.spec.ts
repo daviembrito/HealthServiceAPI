@@ -1,8 +1,7 @@
 import { InMemoryClientRepository } from '../../../test/repositories/in-memory-client-repository';
 import { GetClient } from './get-client';
 import { Client } from '../entities/client';
-import { ClientNotFoundException } from './exceptions/client-not-found';
-import { InvalidIdException } from '../../infra/http/controllers/exceptions/invalid-id';
+import { ClientNotFoundException } from '../../infra/exceptions/client-not-found';
 import ObjectID from 'bson-objectid';
 
 describe('Test for GetClient use case', () => {
@@ -39,21 +38,15 @@ describe('Test for GetClient use case', () => {
     expect(client).toEqual(client2);
   });
 
-  it('should throw ClientNotFoundException', async () => {
-    try {
-      await getClient.execute('54495ad94c934721ede76d90');
-      fail('Expected an error to be thrown, but none was thrown');
-    } catch (error) {
-      expect(error).toBeInstanceOf(ClientNotFoundException);
-    }
+  it('should throw ClientNotFoundException for not found id', async () => {
+    await expect(getClient.execute('54495ad94c934721ede76d90')).rejects.toThrow(
+      ClientNotFoundException,
+    );
   });
 
-  it('should throw InvalidIdException', async () => {
-    try {
-      await getClient.execute('some_invalid_id');
-      fail('Expected an error to be thrown, but none was thrown');
-    } catch (error) {
-      expect(error).toBeInstanceOf(InvalidIdException);
-    }
+  it('should throw ClientNotFoundException for invalid id format', async () => {
+    await expect(getClient.execute('some_invalid_id')).rejects.toThrow(
+      ClientNotFoundException,
+    );
   });
 });
