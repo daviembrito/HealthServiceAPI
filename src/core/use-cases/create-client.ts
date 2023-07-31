@@ -17,11 +17,11 @@ export class CreateClient {
   async execute(request: CreateClientRequest): Promise<void> {
     const {
       name,
-      birthDate: BirthDateString,
+      birthDate: birthDateString,
       gender,
       healthProblems,
     } = request;
-    const birthDate = new Date(BirthDateString);
+    const birthDate = new Date(birthDateString);
 
     const client = new Client({ name, birthDate, gender, healthProblems });
 
