@@ -14,7 +14,7 @@ describe('Test for ListClients use case', () => {
       gender: 'M',
       healthProblems: [{ name: 'diabetes', degree: 5 }],
     });
-    await clientRepository.create(client1);
+    await clientRepository.save(client1);
 
     const client2 = new Client({
       id: 'abcef123',
@@ -23,7 +23,7 @@ describe('Test for ListClients use case', () => {
       gender: 'F',
       healthProblems: [{ name: 'hypertension', degree: 6 }],
     });
-    await clientRepository.create(client2);
+    await clientRepository.save(client2);
 
     const clients = await listClients.execute();
 

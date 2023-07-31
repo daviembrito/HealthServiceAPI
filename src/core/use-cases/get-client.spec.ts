@@ -29,8 +29,8 @@ describe('Test for GetClient use case', () => {
       healthProblems: [{ name: 'hypertension', degree: 6 }],
     });
 
-    await clientRepository.create(client1);
-    await clientRepository.create(client2);
+    await clientRepository.save(client1);
+    await clientRepository.save(client2);
   });
 
   it('should return the correct client', async () => {

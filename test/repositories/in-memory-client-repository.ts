@@ -20,7 +20,7 @@ export class InMemoryClientRepository implements ClientRepository {
     return client;
   }
 
-  async create(client: Client) {
+  async save(client: Client) {
     this.clients.push(client);
   }
 }
