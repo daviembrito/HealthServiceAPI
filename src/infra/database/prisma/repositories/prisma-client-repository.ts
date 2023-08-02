@@ -4,6 +4,7 @@ import { PrismaService } from '../services/prisma-service';
 import { Client } from 'src/core/entities/client';
 import { PrismaClientMapper } from '../mappers/prisma-client-mapper';
 import { ClientNotFoundException } from 'src/infra/exceptions/client-not-found';
+import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 
 @Injectable()
 export class PrismaClientRepository implements ClientRepository {
@@ -32,5 +33,20 @@ export class PrismaClientRepository implements ClientRepository {
     const rawClient = PrismaClientMapper.toPrisma(client);
 
     await this.prismaService.client.create({ data: rawClient });
+  }
+
+  async update(id: string, client: Client): Promise<void> {
+    const rawClient = PrismaClientMapper.toPrisma(client);
+
+    try {
+      await this.prismaService.client.update({
+        where: { id: id },
+        data: rawClient,
+      });
+    } catch (error) {
+      if (error instanceof PrismaClientKnownRequestError)
+        throw new ClientNotFoundException();
+      else throw error;
+    }
   }
 }
