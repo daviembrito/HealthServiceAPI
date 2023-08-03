@@ -43,6 +43,14 @@ export class Client {
     return sum;
   }
 
+  public updatePropertiesFrom(source: Client) {
+    Object.keys(source.properties).forEach((key) => {
+      if (source.properties[key] !== undefined) {
+        this.properties[key] = source.properties[key];
+      }
+    });
+  }
+
   public getId(): string {
     return this.properties.id;
   }
