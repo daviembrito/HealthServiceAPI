@@ -23,4 +23,18 @@ export class InMemoryClientRepository implements ClientRepository {
   async save(client: Client) {
     this.clients.push(client);
   }
+
+  async update(id: string, clientUpdates: Client) {
+    const clientIndex = this.findClientIndex(id);
+
+    if (clientIndex === -1) throw new ClientNotFoundException();
+
+    const client = this.clients[clientIndex];
+    client.updatePropertiesFrom(clientUpdates);
+    this.clients[clientIndex] = client;
+  }
+
+  private findClientIndex(clientId: string) {
+    return this.clients.findIndex((item) => clientId === item.getId());
+  }
 }
