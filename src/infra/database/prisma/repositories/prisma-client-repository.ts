@@ -35,13 +35,13 @@ export class PrismaClientRepository implements ClientRepository {
     await this.prismaService.client.create({ data: rawClient });
   }
 
-  async update(id: string, client: Client): Promise<void> {
-    const rawClient = PrismaClientMapper.toPrisma(client);
+  async update(id: string, clientUpdates: Client): Promise<void> {
+    const rawClientUpdates = PrismaClientMapper.toPrisma(clientUpdates);
 
     try {
       await this.prismaService.client.update({
         where: { id: id },
-        data: rawClient,
+        data: rawClientUpdates,
       });
     } catch (error) {
       if (error instanceof PrismaClientKnownRequestError)
