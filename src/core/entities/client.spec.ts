@@ -22,6 +22,11 @@ describe('Test for Client entity', () => {
   });
 
   it('should be able to calculate the right score', () => {
-    expect(client.score()).toBeCloseTo(98.52);
+    expect(client.getScore()).toBeCloseTo(98.52);
+  });
+
+  it('should be able to update the score', () => {
+    client.setHealthProblems([]);
+    expect(client.getScore()).toBeCloseTo(5.73);
   });
 });
