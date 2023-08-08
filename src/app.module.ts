@@ -7,6 +7,7 @@ import { ClientRepository } from './core/repositories/client-repository';
 import { GetClient } from './core/use-cases/get-client';
 import { CreateClient } from './core/use-cases/create-client';
 import { UpdateClient } from './core/use-cases/update-client';
+import { GetTopHealthRiskClients } from './core/use-cases/get-top-health-risk-clients';
 
 @Module({
   imports: [],
@@ -21,6 +22,7 @@ import { UpdateClient } from './core/use-cases/update-client';
     GetClient,
     CreateClient,
     UpdateClient,
+    GetTopHealthRiskClients,
   ],
 })
 export class AppModule {}

@@ -16,6 +16,7 @@ import { CreateClient } from 'src/core/use-cases/create-client';
 import { ClientNotFoundException } from 'src/infra/exceptions/client-not-found';
 import { UpdateClientBody } from './dtos/update-client-body';
 import { UpdateClient } from 'src/core/use-cases/update-client';
+import { GetTopHealthRiskClients } from 'src/core/use-cases/get-top-health-risk-clients';
 
 @Controller('client')
 export class ClientController {
@@ -24,11 +25,17 @@ export class ClientController {
     private readonly getClient: GetClient,
     private readonly createClient: CreateClient,
     private readonly updateClient: UpdateClient,
+    private readonly getTopHealthRiskClients: GetTopHealthRiskClients,
   ) {}
 
   @Get()
   async getAllClients() {
     return await this.listClients.execute();
+  }
+
+  @Get('top-health-risk')
+  async getTopRiskClients() {
+    return await this.getTopHealthRiskClients.execute();
   }
 
   @Get(':id')
