@@ -7,6 +7,7 @@ export interface ClientProperties {
   birthDate: Date;
   gender: string;
   healthProblems: HealthProblem[];
+  score?: number;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -25,16 +26,17 @@ export class Client {
       createdAt: properties.createdAt ?? new Date(),
       updatedAt: properties.updatedAt ?? new Date(),
     };
+    this.updateScore();
   }
 
-  public score(): number {
-    const sumOfDegrees = this.sumOfHealthProblems();
+  private updateScore() {
+    const sumOfDegrees = this.sumOfHealthProblemsDegrees();
     const exp = Math.exp(-(-2.8 + sumOfDegrees));
 
-    return (1 / (1 + exp)) * 100;
+    this.properties.score = (1 / (1 + exp)) * 100;
   }
 
-  private sumOfHealthProblems(): number {
+  private sumOfHealthProblemsDegrees(): number {
     let sum = 0;
     for (const { degree } of this.properties.healthProblems) {
       sum += degree;
@@ -49,6 +51,10 @@ export class Client {
         this.properties[key] = source.properties[key];
       }
     });
+  }
+
+  public getScore(): number {
+    return this.properties.score;
   }
 
   public getId(): string {
@@ -89,6 +95,7 @@ export class Client {
 
   public setHealthProblems(healthProblems: HealthProblem[]): void {
     this.properties.healthProblems = healthProblems;
+    this.updateScore();
   }
 
   public getCreatedAt(): Date {
