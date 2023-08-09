@@ -1,5 +1,5 @@
 import { Client as RawClient } from '@prisma/client';
-import { Client } from 'src/core/entities/client';
+import { Client } from '@core/entities/client';
 
 export class PrismaClientMapper {
   static toDomain(rawClient: RawClient): Client {

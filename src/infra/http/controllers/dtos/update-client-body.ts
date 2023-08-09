@@ -6,7 +6,7 @@ import {
   IsArray,
   ValidateNested,
 } from 'class-validator';
-import { HealthProblem } from 'src/core/entities/health-problem';
+import { HealthProblem } from '@core/entities/health-problem';
 
 export class UpdateClientBody {
   @IsString()

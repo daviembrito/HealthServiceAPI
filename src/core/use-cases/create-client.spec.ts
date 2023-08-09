@@ -1,4 +1,4 @@
-import { InMemoryClientRepository } from '../../../test/repositories/in-memory-client-repository';
+import { InMemoryClientRepository } from '@test/repositories/in-memory-client-repository';
 import { CreateClient } from './create-client';
 
 describe('Test for CreateClient use case', () => {

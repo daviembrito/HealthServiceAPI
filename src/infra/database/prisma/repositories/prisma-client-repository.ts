@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { ClientRepository } from 'src/core/repositories/client-repository';
+import { ClientRepository } from '@core/repositories/client-repository';
 import { PrismaService } from '../services/prisma-service';
-import { Client } from 'src/core/entities/client';
+import { Client } from '@core/entities/client';
 import { PrismaClientMapper } from '../mappers/prisma-client-mapper';
-import { ClientNotFoundException } from 'src/infra/exceptions/client-not-found';
+import { ClientNotFoundException } from '@infra/exceptions/client-not-found';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 
 @Injectable()

@@ -1,7 +1,7 @@
-import { InMemoryClientRepository } from '../../../test/repositories/in-memory-client-repository';
+import { InMemoryClientRepository } from '@test/repositories/in-memory-client-repository';
 import { GetClient } from './get-client';
 import { Client } from '../entities/client';
-import { ClientNotFoundException } from '../../infra/exceptions/client-not-found';
+import { ClientNotFoundException } from '@infra/exceptions/client-not-found';
 import ObjectID from 'bson-objectid';
 
 describe('Test for GetClient use case', () => {

@@ -7,16 +7,16 @@ import {
   Body,
   Patch,
 } from '@nestjs/common';
-import { GetClient } from 'src/core/use-cases/get-client';
-import { ListClients } from 'src/core/use-cases/list-clients';
+import { GetClient } from '@core/use-cases/get-client';
+import { ListClients } from '@core/use-cases/list-clients';
 import { ClientNotFoundExceptionFilter } from '../filters/client-not-found-filter';
 import ObjectID from 'bson-objectid';
 import { CreateClientBody } from './dtos/create-client-body';
-import { CreateClient } from 'src/core/use-cases/create-client';
-import { ClientNotFoundException } from 'src/infra/exceptions/client-not-found';
+import { CreateClient } from '@core/use-cases/create-client';
+import { ClientNotFoundException } from '@infra/exceptions/client-not-found';
 import { UpdateClientBody } from './dtos/update-client-body';
-import { UpdateClient } from 'src/core/use-cases/update-client';
-import { GetTopHealthRiskClients } from 'src/core/use-cases/get-top-health-risk-clients';
+import { UpdateClient } from '@core/use-cases/update-client';
+import { GetTopHealthRiskClients } from '@core/use-cases/get-top-health-risk-clients';
 
 @Controller('client')
 export class ClientController {

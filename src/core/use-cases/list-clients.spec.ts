@@ -1,4 +1,4 @@
-import { InMemoryClientRepository } from '../../../test/repositories/in-memory-client-repository';
+import { InMemoryClientRepository } from '@test/repositories/in-memory-client-repository';
 import { ListClients } from './list-clients';
 import { Client } from '../entities/client';
 

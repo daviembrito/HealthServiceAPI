@@ -1,5 +1,5 @@
 import ObjectID from 'bson-objectid';
-import { InMemoryClientRepository } from '../../../test/repositories/in-memory-client-repository';
+import { InMemoryClientRepository } from '@test/repositories/in-memory-client-repository';
 import { Client } from '../entities/client';
 import { UpdateClient } from './update-client';
 

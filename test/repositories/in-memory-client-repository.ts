@@ -1,7 +1,7 @@
-import { Client } from 'src/core/entities/client';
-import { ClientRepository } from 'src/core/repositories/client-repository';
+import { Client } from '@core/entities/client';
+import { ClientRepository } from '@core/repositories/client-repository';
 import ObjectID from 'bson-objectid';
-import { ClientNotFoundException } from '../../src/infra/exceptions/client-not-found';
+import { ClientNotFoundException } from '@infra/exceptions/client-not-found';
 
 export class InMemoryClientRepository implements ClientRepository {
   public clients: Client[] = [];
