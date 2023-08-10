@@ -4,9 +4,10 @@ import {
   IsDateString,
   IsIn,
   IsArray,
-  ValidateNested,
+  Validate,
 } from 'class-validator';
 import { HealthProblem } from '@core/entities/health-problem';
+import { HealthProblemValidator } from './validators/health-problem-validator';
 
 export class UpdateClientBody {
   @IsString()
@@ -22,7 +23,7 @@ export class UpdateClientBody {
   gender: string;
 
   @IsArray()
-  @ValidateNested({ each: true })
+  @Validate(HealthProblemValidator)
   @IsOptional()
   healthProblems: HealthProblem[];
 }

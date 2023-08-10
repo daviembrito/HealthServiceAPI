@@ -3,9 +3,10 @@ import {
   IsDateString,
   IsIn,
   IsArray,
-  ValidateNested,
+  Validate,
 } from 'class-validator';
 import { HealthProblem } from '@core/entities/health-problem';
+import { HealthProblemValidator } from './validators/health-problem-validator';
 
 export class CreateClientBody {
   @IsNotEmpty()
@@ -18,6 +19,6 @@ export class CreateClientBody {
   gender: string;
 
   @IsArray()
-  @ValidateNested({ each: true })
+  @Validate(HealthProblemValidator, { each: true })
   healthProblems: HealthProblem[];
 }
