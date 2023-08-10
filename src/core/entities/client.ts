@@ -30,6 +30,11 @@ export class Client {
   }
 
   private updateScore() {
+    if (!this.properties.healthProblems) {
+      this.properties.score = 0;
+      return;
+    }
+
     const sumOfDegrees = this.sumOfHealthProblemsDegrees();
     const exp = Math.exp(-(-2.8 + sumOfDegrees));
 
