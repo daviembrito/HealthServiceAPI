@@ -15,4 +15,8 @@ export class GetTopHealthRiskClients {
 
     return clients.slice(0, this.numberOfClients);
   }
+
+  public setNumberOfClients(numberOfClients: number) {
+    this.numberOfClients = numberOfClients;
+  }
 }
