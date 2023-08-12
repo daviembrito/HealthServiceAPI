@@ -5,6 +5,7 @@ import { Client } from '@core/entities/client';
 import { PrismaClientMapper } from '../mappers/prisma-client-mapper';
 import { ClientNotFoundException } from '@infra/exceptions/client-not-found';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
+import ObjectID from 'bson-objectid';
 
 @Injectable()
 export class PrismaClientRepository implements ClientRepository {
@@ -43,6 +44,18 @@ export class PrismaClientRepository implements ClientRepository {
         where: { id: id },
         data: rawClientUpdates,
       });
+    } catch (error) {
+      if (error instanceof PrismaClientKnownRequestError)
+        throw new ClientNotFoundException();
+      else throw error;
+    }
+  }
+
+  async delete(id: string): Promise<void> {
+    if (!ObjectID.isValid(id)) throw new ClientNotFoundException();
+
+    try {
+      await this.prismaService.client.delete({ where: { id: id } });
     } catch (error) {
       if (error instanceof PrismaClientKnownRequestError)
         throw new ClientNotFoundException();

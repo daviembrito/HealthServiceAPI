@@ -6,6 +6,7 @@ import { CreateClient } from '@core/use-cases/create-client';
 import { GetTopHealthRiskClients } from '@core/use-cases/get-top-health-risk-clients';
 import { UpdateClient } from '@core/use-cases/update-client';
 import { DatabaseModule } from '@infra/database/database.module';
+import { DeleteClient } from '@core/use-cases/delete-client';
 
 @Module({
   imports: [DatabaseModule],
@@ -16,6 +17,7 @@ import { DatabaseModule } from '@infra/database/database.module';
     CreateClient,
     UpdateClient,
     GetTopHealthRiskClients,
+    DeleteClient,
   ],
 })
 export class HttpModule {}

@@ -6,6 +6,7 @@ import {
   UseFilters,
   Body,
   Patch,
+  Delete,
 } from '@nestjs/common';
 import { GetClient } from '@core/use-cases/get-client';
 import { ListClients } from '@core/use-cases/list-clients';
@@ -17,6 +18,7 @@ import { ClientNotFoundException } from '@infra/exceptions/client-not-found';
 import { UpdateClientBody } from './dtos/update-client-body';
 import { UpdateClient } from '@core/use-cases/update-client';
 import { GetTopHealthRiskClients } from '@core/use-cases/get-top-health-risk-clients';
+import { DeleteClient } from '@core/use-cases/delete-client';
 
 @Controller('client')
 export class ClientController {
@@ -26,6 +28,7 @@ export class ClientController {
     private readonly createClient: CreateClient,
     private readonly updateClient: UpdateClient,
     private readonly getTopHealthRiskClients: GetTopHealthRiskClients,
+    private readonly deleteClient: DeleteClient,
   ) {}
 
   @Get()
@@ -72,5 +75,11 @@ export class ClientController {
       gender,
       healthProblems,
     });
+  }
+
+  @Delete(':id')
+  @UseFilters(new ClientNotFoundExceptionFilter())
+  async remove(@Param('id') id: string) {
+    await this.deleteClient.execute(id);
   }
 }
