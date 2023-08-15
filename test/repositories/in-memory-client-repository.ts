@@ -34,6 +34,14 @@ export class InMemoryClientRepository implements ClientRepository {
     this.clients[clientIndex] = client;
   }
 
+  async delete(id: string): Promise<void> {
+    const clientIndex = this.findClientIndex(id);
+
+    if (clientIndex === -1) throw new ClientNotFoundException();
+
+    this.clients.splice(clientIndex, 1);
+  }
+
   private findClientIndex(clientId: string) {
     return this.clients.findIndex((item) => clientId === item.getId());
   }
