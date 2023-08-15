@@ -55,7 +55,7 @@ export class ClientController {
   async create(@Body() body: CreateClientBody) {
     const { name, birthDate, gender, healthProblems } = body;
 
-    this.createClient.execute({
+    await this.createClient.execute({
       name,
       birthDate,
       gender,
