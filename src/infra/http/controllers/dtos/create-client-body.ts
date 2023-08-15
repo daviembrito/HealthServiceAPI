@@ -18,7 +18,7 @@ export class CreateClientBody {
   @IsIn(['M', 'F'])
   gender: string;
 
-  @IsArray()
   @Validate(HealthProblemValidator, { each: true })
+  @IsArray()
   healthProblems: HealthProblem[];
 }

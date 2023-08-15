@@ -22,8 +22,8 @@ export class UpdateClientBody {
   @IsOptional()
   gender: string;
 
+  @Validate(HealthProblemValidator, { each: true })
   @IsArray()
-  @Validate(HealthProblemValidator)
   @IsOptional()
   healthProblems: HealthProblem[];
 }
