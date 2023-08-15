@@ -19,6 +19,8 @@ export class PrismaClientRepository implements ClientRepository {
   }
 
   async findById(id: string): Promise<Client> | null {
+    if (!ObjectID.isValid(id)) throw new ClientNotFoundException();
+
     const client = await this.prismaService.client.findUnique({
       where: { id: id },
     });
@@ -37,6 +39,8 @@ export class PrismaClientRepository implements ClientRepository {
   }
 
   async update(id: string, clientUpdates: Client): Promise<void> {
+    if (!ObjectID.isValid(id)) throw new ClientNotFoundException();
+
     const rawClientUpdates = PrismaClientMapper.toPrisma(clientUpdates);
 
     try {
