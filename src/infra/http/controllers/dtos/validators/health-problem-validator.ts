@@ -10,6 +10,6 @@ export class HealthProblemValidator implements ValidatorConstraintInterface {
   }
 
   defaultMessage() {
-    return 'Missing healthProblem fields (name, degree)';
+    return 'each healthProblem must be an object with fields (name, degree)';
   }
 }
