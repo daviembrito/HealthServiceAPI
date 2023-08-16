@@ -17,7 +17,9 @@ import { UpdateClientBody } from './dtos/update-client-body';
 import { UpdateClient } from '@core/use-cases/update-client';
 import { GetTopHealthRiskClients } from '@core/use-cases/get-top-health-risk-clients';
 import { DeleteClient } from '@core/use-cases/delete-client';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('client')
 @Controller('client')
 export class ClientController {
   constructor(
